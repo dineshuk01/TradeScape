@@ -25,6 +25,12 @@ export interface TradeMetrics {
   averageLosingTrade: number | null;
 }
 
+export interface EquityPoint {
+  label: string;
+  balance: number;
+  index: number;
+}
+
 export interface RiskMetrics {
   currentDrawdown: number;
   remainingDrawdown: number;

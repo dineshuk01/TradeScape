@@ -327,6 +327,93 @@ h1 {
   padding: 8px 0 0;
 }
 
+.equity-curve {
+  display: grid;
+  gap: 14px;
+}
+
+.equity-curve__summary {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.equity-curve__label {
+  margin: 0 0 6px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+}
+
+.equity-curve__summary h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.equity-curve__note {
+  margin: 0;
+  color: var(--muted);
+  text-align: right;
+}
+
+.equity-curve__chart {
+  width: 100%;
+  min-height: 260px;
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03)),
+    radial-gradient(circle at top, rgba(87, 209, 138, 0.08), transparent 55%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.equity-curve__chart svg {
+  width: 100%;
+  height: 300px;
+  display: block;
+}
+
+.equity-curve__axis {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1;
+}
+
+.equity-curve__line {
+  fill: none;
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.equity-curve__segment-fill {
+  stroke: none;
+}
+
+.equity-curve__gain {
+  stroke: url(#equityGainGradient);
+  fill: url(#equityGainFill);
+}
+
+.equity-curve__loss {
+  stroke: url(#equityLossGradient);
+  fill: url(#equityLossFill);
+}
+
+.equity-curve__point {
+  fill: #08111d;
+  stroke: #f7fff8;
+  stroke-width: 3;
+}
+
+.equity-curve__legend {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--muted);
+}
+
 @media (max-width: 1024px) {
   .card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -357,5 +444,15 @@ h1 {
   .risk-metric__subrow {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .equity-curve__summary,
+  .equity-curve__legend {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .equity-curve__note {
+    text-align: left;
   }
 }

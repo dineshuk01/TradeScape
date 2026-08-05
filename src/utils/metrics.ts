@@ -1,4 +1,4 @@
-import type { AccountRules, RiskMetrics, Trade, TradeMetrics } from '../types';
+import type { AccountRules, EquityPoint, RiskMetrics, Trade, TradeMetrics } from '../types';
 
 const safeDivide = (numerator: number, denominator: number): number => {
   if (denominator === 0) return 0;
@@ -74,4 +74,20 @@ export const getRiskMetrics = (
 export const getRiskUsage = (current: number, limit: number): number => {
   if (limit <= 0) return 0;
   return Math.min(1, current / limit);
+};
+
+export const getEquityCurve = (trades: Trade[], startingBalance: number): EquityPoint[] => {
+  const points: EquityPoint[] = [{ label: 'Start', balance: startingBalance, index: 0 }];
+  let runningBalance = startingBalance;
+
+  trades.forEach((trade, index) => {
+    runningBalance += trade.pnl;
+    points.push({
+      label: `${trade.symbol} ${trade.side}`,
+      balance: runningBalance,
+      index: index + 1,
+    });
+  });
+
+  return points;
 };

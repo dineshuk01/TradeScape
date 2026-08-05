@@ -1,13 +1,15 @@
 import './styles.css';
 import { accountRules, trades } from './data';
+import { EquityCurve } from './components/EquityCurve';
+import { RiskIndicator } from './components/RiskIndicator';
 import { SectionHeader } from './components/SectionHeader';
 import { StatCard } from './components/StatCard';
-import { RiskIndicator } from './components/RiskIndicator';
 import { TradeTable } from './components/TradeTable';
-import { formatCurrency, formatPercent, getRiskMetrics, getTradeMetrics } from './utils/metrics';
+import { formatCurrency, formatPercent, getEquityCurve, getRiskMetrics, getTradeMetrics } from './utils/metrics';
 
 const tradeMetrics = getTradeMetrics(trades, accountRules.startingBalance);
 const riskMetrics = getRiskMetrics(accountRules, tradeMetrics, trades);
+const equityCurve = getEquityCurve(trades, accountRules.startingBalance);
 
 const averageTradeComparison = (() => {
   const avgWin = tradeMetrics.averageWinningTrade;
@@ -65,18 +67,23 @@ function App() {
         <StatCard label="Win rate" value={formatPercent(tradeMetrics.winRate)} tone="warning" />
         <StatCard
           label="Largest winning trade"
-          value={tradeMetrics.largestWinningTrade === null ? '—' : formatCurrency(tradeMetrics.largestWinningTrade)}
+          value={tradeMetrics.largestWinningTrade === null ? '-' : formatCurrency(tradeMetrics.largestWinningTrade)}
           tone="positive"
         />
         <StatCard
           label="Largest losing trade"
-          value={tradeMetrics.largestLosingTrade === null ? '—' : formatCurrency(tradeMetrics.largestLosingTrade)}
+          value={tradeMetrics.largestLosingTrade === null ? '-' : formatCurrency(tradeMetrics.largestLosingTrade)}
           tone="negative"
         />
-        <StatCard label="Extra insight" value={averageTradeComparison} helpText="Average win vs average loss" />
+        
       </section>
 
       <section className="panel-stack">
+        <div className="panel">
+          <SectionHeader title="Equity curve" description="How the balance changed trade by trade." />
+          <EquityCurve points={equityCurve} />
+        </div>
+
         <div className="panel">
           <SectionHeader
             title="Risk status"
