@@ -14,13 +14,13 @@ A responsive dashboard for quickly evaluating a trader's performance against the
 
 ## Extra feature
 
-I added **average winning trade vs average losing trade**.
+I added an **equity curve**.
 
 Why:
 
-- It gives more context than win rate alone
-- It helps show whether the strategy makes more on winners than it loses on losers
-- It is useful for spotting asymmetric reward-to-risk behavior quickly
+- It gives the trader an instant visual of account progression over time
+- It makes it easier to see whether performance is stable, choppy, or deteriorating
+- It pairs well with the risk dashboard because it shows when the account crosses above or below starting cash
 
 ## Product questions
 
@@ -34,7 +34,7 @@ Current P&L shows profit or loss, but remaining drawdown shows how much room is 
 
 ### 3. If you had another day to work on this dashboard, what would you improve?
 
-I would add time-based performance analysis, such as equity curve history, best/worst day, and asset-level filtering, so the trader can understand performance patterns more deeply.
+I would add time-based performance analysis, such as best/worst day, asset-level filtering, and hover tooltips on the equity curve, so the trader can understand performance patterns more deeply.
 
 ## How to run
 
